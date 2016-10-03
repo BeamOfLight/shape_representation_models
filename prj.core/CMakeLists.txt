@@ -1,0 +1,2 @@
+add_subdirectory(dpcore)
+add_subdirectory(shape_representation_models)
