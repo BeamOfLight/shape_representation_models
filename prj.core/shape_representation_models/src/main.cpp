@@ -269,7 +269,9 @@ int main(int argc, char** argv)
 	std::cout << objects.size() << std::endl;
 
 	if (!objects.size()) {
-		std::cout << "Need more objects!" << std::endl;
+		std::cout << "Need more objects!" << std::endl
+			<< "Maybe you forgot to download the image database to data directory:" << std::endl
+			<< "git clone https://github.com/BeamOfLight/silhouettes-database.git" << std::endl;
 		return 1;
 	}
 	
