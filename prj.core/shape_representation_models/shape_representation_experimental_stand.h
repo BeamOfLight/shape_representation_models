@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     shape_representation_experimental_stand.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -50,16 +50,16 @@ namespace ShapeRepresentationModels {
 		std::vector < AbstractModel* > models;
 		std::vector < ModelInfo* > modelsInfo;
 		Configuration* configuration;
-	
+
 		// Работа с потоками
 		std::vector < cv::Mat > srcThreadObjects;
 		std::vector < AbstractModel::AbstractRepresentation* > encodedThreadObjects;
 		std::vector < cv::Mat > decodedThreadObjects;
 		std::vector < int > threadStatus;
-	
+
 		void encodeObjectThreadFunc(std::pair < int, int > const &params);
 		void decodeObjectThreadFunc(std::pair < int, int > const &params);
-	
+
 		float getTimeInSeconds(clock_t time);
 		SummaryStat getAreaDiffSummaryStat(int modelId, std::vector < cv::Mat > const &dstObjects);
 		cv::Mat normalizeBinaryImage(cv::Mat image);
@@ -71,7 +71,7 @@ namespace ShapeRepresentationModels {
 		int getModelRepresentationSize(int modelId, std::vector < AbstractModel::AbstractRepresentation* > encodedObjects);
 		std::vector < ModelInfo* > getModelsInfo();
 		void show(int methodType);
-	
+
 		std::vector < AbstractModel::AbstractRepresentation* > encode(int modelId, std::vector < cv::Mat > objects);
 		std::vector < cv::Mat > decode(int modelId, std::vector < AbstractModel::AbstractRepresentation* > encodedObjects);
 	};

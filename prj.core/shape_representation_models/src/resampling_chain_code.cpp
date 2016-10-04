@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     resampling_chain_code.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/resampling_chain_code.h>
@@ -24,7 +24,7 @@ std::string ShapeRepresentationModels::ResamplingChainCode::getMethodName()
 {
 	std::stringstream ss;
 	ss << "RCC" << getPinCount() << "(" << resamplingLevel << ")";
-	
+
 	return ss.str();
 }
 
@@ -71,9 +71,9 @@ unsigned char ShapeRepresentationModels::ResamplingChainCode::getNPointValue(con
 }
 
 ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresentationModels::ResamplingChainCode::encodeSingleObject(const cv::Mat &object)
-{	
+{
 	cv::Size objectSize = getOptimalSize(object.size());
-		
+
 	cv::Mat newObject = cv::Mat::zeros(objectSize, CV_8UC1);
 	for (int y = 0; y < object.rows; y++) {
 		for (int x = 0; x < object.cols; x++) {
@@ -89,7 +89,7 @@ ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresent
 			smallObject.at < uchar > (y, x) = getNPointValue(newObject, cv::Point(step * x, step * y));
 		}
 	}
-	
+
 	return AbstractContourModel::encodeSingleObject(smallObject);
 }
 
@@ -111,7 +111,7 @@ void ShapeRepresentationModels::ResamplingChainCode::ContourRepresentation::init
 	if (pointsCount > 0) {
 		firstPoint = points[0];
 	}
-	
+
 	chainCodes.clear();
 	unsigned char curChainCode;
 	if (!use4pin) {
@@ -156,7 +156,7 @@ std::vector < cv::Point > ShapeRepresentationModels::ResamplingChainCode::Contou
 		{-1, 0},
 		{-1, 1}
 	};
-	
+
 	std::vector < cv::Point > result;
 	int step = (int) pow(2, resamplingLevel);
 	cv::Point realFirstPoint = cv::Point(
@@ -173,6 +173,6 @@ std::vector < cv::Point > ShapeRepresentationModels::ResamplingChainCode::Contou
 			result.push_back(currentPoint);
 		}
 	}
-	
+
 	return result;
 }

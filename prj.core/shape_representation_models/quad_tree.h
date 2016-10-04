@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     quad_tree.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -27,7 +27,7 @@ namespace ShapeRepresentationModels {
 			QuadTreeNode* topRight;
 			QuadTreeNode* bottomLeft;
 			QuadTreeNode* bottomRight;
-		
+
 			QuadTreeNode()
 			{
 				this->value = 99;
@@ -36,7 +36,7 @@ namespace ShapeRepresentationModels {
 				bottomLeft = 0;
 				bottomRight = 0;
 			}
-		
+
 			void initNodes()
 			{
 				topLeft     = new QuadTreeNode();
@@ -54,13 +54,13 @@ namespace ShapeRepresentationModels {
 
 		QuadTree(size_t pointRepresentationSize);
 		std::string getMethodName();
-	
+
 		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
 		AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
-		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);	
+		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
 	  private:
 		size_t pointRepresentationSize;
-	
+
 		cv::Vec3i getNodeCounters(QuadTreeNode* tree, cv::Vec3i counters = cv::Vec3i(0, 0, 0));
 		cv::Size getOptimalSize(int width, int height);
 		void fillQuadTree(cv::Mat image, QuadTreeNode* tree);

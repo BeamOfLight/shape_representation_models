@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     abstract_area_model.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -16,7 +16,7 @@ namespace ShapeRepresentationModels {
 	class AbstractAreaModel: public AbstractModel
 	{
 	  protected:
-		std::vector < cv::Point > getImageContour(const cv::Mat &image);	
+		std::vector < cv::Point > getImageContour(const cv::Mat &image);
 
 	  public:
 		int getMethodType() const;

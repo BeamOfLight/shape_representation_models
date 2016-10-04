@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     fourier.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/fourier.h>
@@ -18,7 +18,7 @@ std::string ShapeRepresentationModels::Fourier::getMethodName()
 {
 	std::stringstream ss;
 	ss << "Fourier(" << fourierDescriptorSize << ")";
-	
+
 	return ss.str();
 }
 
@@ -39,7 +39,7 @@ int ShapeRepresentationModels::Fourier::getObjectRepresentationSize(AbstractMode
 		fourierDescriptorElementsCount += static_cast < ContourRepresentation* > (objectRepresentation->data.innerContours[contourId])
 			->getResultFourierDescriptorSize();
 	}
-	
+
 	float resultInBits = (float) (pointsCountSize * (holesCount + 1) + fourierDescriptorElementsCount * fourierElementSizeInBits + contoursCountSize + log2(fourierMaxElementsPerContour));
 
 	return (int) ceil(resultInBits / 8);
@@ -62,7 +62,7 @@ void ShapeRepresentationModels::Fourier::ContourRepresentation::initFromPoints(c
 		pointsY.at < float > (0, i) = (float) points[i].y;
 	}
 	cv::Mat planes[] = {pointsX, pointsY};
-		
+
     cv::Mat complexI;    //Complex plane to contain the DFT coefficients {[0]-Real,[1]-Img}
     cv::merge(planes, 2, complexI);
     cv::dft(complexI, complexI);  // Applying DFT
@@ -86,7 +86,7 @@ int ShapeRepresentationModels::Fourier::ContourRepresentation::getResultFourierD
 	if (fourierDescriptorSize > contourLength / 2) {
 		resultFourierDescriptorSize = contourLength / 2;
 	}
-	
+
 	return resultFourierDescriptorSize;
 }
 
@@ -99,11 +99,11 @@ std::vector < cv::Point > ShapeRepresentationModels::Fourier::ContourRepresentat
 		complexI.at < cv::Vec2f > (0, i) = fourierDescriptorLeft[i];
 		complexI.at < cv::Vec2f > (0, contourLength - i - 1) = fourierDescriptorRight[i];
 	}
-	
+
 	// Reconstructing original image from the DFT coefficients
     cv::Mat invDFT;
     cv::idft(complexI, invDFT, cv::DFT_SCALE | cv::DFT_COMPLEX_OUTPUT ); // Applying IDFT
-	
+
 	std::vector < cv::Point > result;
 	for (int i = 0; i < contourLength; i++) {
 		result.push_back(

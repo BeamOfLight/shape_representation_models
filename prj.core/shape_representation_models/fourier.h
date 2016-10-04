@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     fourier.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -26,13 +26,13 @@ namespace ShapeRepresentationModels {
 			std::vector < cv::Vec2f > fourierDescriptorRight;
 			int contourLength;
 			int fourierDescriptorSize;
-		
+
 			int getResultFourierDescriptorSize();
-		
+
 			ContourRepresentation(int fourierDescriptorSize);
 			std::vector < cv::Point > convert2Points();
 			void initFromPoints(const std::vector < cv::Point > &points);
-		};  
+		};
 
 		Fourier(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize, int fourierDescriptorSize);
 		std::string getMethodName();

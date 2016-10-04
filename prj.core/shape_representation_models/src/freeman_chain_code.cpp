@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     freeman_chain_code.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/freeman_chain_code.h>
@@ -23,7 +23,7 @@ std::string ShapeRepresentationModels::FreemanChainCode::getMethodName()
 {
 	std::stringstream ss;
 	ss << "FCC" << getPinCount();
-	
+
 	return ss.str();
 }
 
@@ -62,7 +62,7 @@ void ShapeRepresentationModels::FreemanChainCode::ContourRepresentation::initFro
 	if (pointsCount > 0) {
 		firstPoint = points[0];
 	}
-	
+
 	chainCodes.clear();
 	unsigned char curChainCode;
 	if (!use4pin) {
@@ -107,7 +107,7 @@ std::vector < cv::Point > ShapeRepresentationModels::FreemanChainCode::ContourRe
 		{-1, 0},
 		{-1, 1}
 	};
-	
+
 	std::vector < cv::Point > result;
 	result.push_back(firstPoint);
 	cv::Point currentPoint = firstPoint;
@@ -118,6 +118,6 @@ std::vector < cv::Point > ShapeRepresentationModels::FreemanChainCode::ContourRe
 		currentPoint.y += chainCodesInvMap8[chainCodes[i]][0];
 		result.push_back(currentPoint);
 	}
-	
+
 	return result;
 }

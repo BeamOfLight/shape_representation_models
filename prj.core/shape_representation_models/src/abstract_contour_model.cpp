@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     abstract_contour_model.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/abstract_contour_model.h>
@@ -21,10 +21,10 @@ int ShapeRepresentationModels::AbstractContourModel::getMethodType() const
 }
 
 ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresentationModels::AbstractContourModel::encodeSingleObject(const cv::Mat &object)
-{	
+{
 	Representation* objectRepresentation = new Representation();
 	objectRepresentation->data = convertPointRepresentation2EncodedObject(DpCore::Object::convertObject2PointRepresentation(object, 0));
-	
+
 	return objectRepresentation;
 }
 
@@ -44,7 +44,7 @@ DpCore::ObjectRepresentation < ShapeRepresentationModels::AbstractContourModel::
 		encodedObject.innerContours.push_back(getNewContourRepresentation());
 		encodedObject.innerContours.back()->initFromPoints(pointRepresentation.innerContours[contour_id]);
 	}
-	
+
 	return encodedObject;
 }
 
@@ -57,7 +57,7 @@ DpCore::ObjectRepresentation < std::vector < cv::Point > > ShapeRepresentationMo
 			encodedObject.innerContours[contourId]->convert2Points()
 		);
 	}
-	
+
 	return pointRepresentation;
 }
 

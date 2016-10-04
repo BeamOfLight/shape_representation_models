@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     deflate_model.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/deflate_model.h>
@@ -23,7 +23,7 @@ std::string ShapeRepresentationModels::DeflateModel::getMethodName()
 	if (biLevel) {
 		biletter = "B";
 	}
-	
+
 	std::string strategyStr = "";
 	switch (strategy) {
 		case cv::IMWRITE_PNG_STRATEGY_DEFAULT:
@@ -42,7 +42,7 @@ std::string ShapeRepresentationModels::DeflateModel::getMethodName()
 			strategyStr = "Fix";
 			break;
 	}
-	
+
 	std::stringstream ss;
 	ss << "Deflate-" << strategyStr << "(" << compressionLevel << biletter << ")";
 
@@ -52,7 +52,7 @@ std::string ShapeRepresentationModels::DeflateModel::getMethodName()
 int ShapeRepresentationModels::DeflateModel::getObjectRepresentationSize(AbstractModel::AbstractRepresentation* abstractObjectRepresentation)
 {
 	Representation* objectRepresentation = static_cast < Representation* > (abstractObjectRepresentation);
-	
+
 	return objectRepresentation->buffer.size();
 }
 
@@ -60,15 +60,15 @@ ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresent
 {
 	Representation* objectRepresentation = new Representation();
 	std::vector < int > compression_params;
-    compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
-    compression_params.push_back(compressionLevel);
-    compression_params.push_back(CV_IMWRITE_PNG_STRATEGY);
-    compression_params.push_back(strategy);
+	compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
+	compression_params.push_back(compressionLevel);
+	compression_params.push_back(CV_IMWRITE_PNG_STRATEGY);
+	compression_params.push_back(strategy);
 	compression_params.push_back(CV_IMWRITE_PNG_BILEVEL );
 	compression_params.push_back((int) biLevel);
-	
+
 	cv::imencode(".png", object, objectRepresentation->buffer, compression_params);
-	
+
 	return objectRepresentation;
 }
 
@@ -76,6 +76,6 @@ cv::Mat ShapeRepresentationModels::DeflateModel::decodeSingleObject(AbstractMode
 {
 	Representation* objectRepresentation = static_cast < Representation* > (abstractObjectRepresentation);
 	cv::Mat result = cv::imdecode(objectRepresentation->buffer, CV_LOAD_IMAGE_GRAYSCALE);
-	
+
 	return result;
 }

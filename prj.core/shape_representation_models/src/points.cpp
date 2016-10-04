@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     points.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/points.h>
@@ -32,7 +32,7 @@ int ShapeRepresentationModels::Points::getObjectRepresentationSize(ShapeRepresen
 		pointsCount += static_cast < ContourRepresentation* > (objectRepresentation->data.innerContours[contourId])->points.size();
 	}
 	float resultInBits = (float) (pointRepresentationSize * pointsCount + pointsCountSize * (holesCount + 1) + contoursCountSize);
-	
+
 	return (int) std::ceil(resultInBits / 8);
 }
 
@@ -44,6 +44,6 @@ void ShapeRepresentationModels::Points::ContourRepresentation::initFromPoints(st
 std::vector < cv::Point > ShapeRepresentationModels::Points::ContourRepresentation::convert2Points()
 {
 	std::vector < cv::Point > result = std::vector < cv::Point > (points);
-	
+
 	return result;
 }

@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     centered_points.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -22,10 +22,10 @@ namespace ShapeRepresentationModels {
 		{
 			cv::Point center;
 			std::vector < cv::Point > normalizedContour;
-		
+
 			std::vector < cv::Point > convert2Points();
 			void initFromPoints(const std::vector < cv::Point > &points);
-		};  
+		};
 
 		CenteredPoints(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize);
 		std::string getMethodName();

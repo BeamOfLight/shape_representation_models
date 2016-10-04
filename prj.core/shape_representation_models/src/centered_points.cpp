@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     centered_points.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/centered_points.h>
@@ -31,7 +31,7 @@ int ShapeRepresentationModels::CenteredPoints::getObjectRepresentationSize(Abstr
 	for (int contourId = 0; contourId < holesCount; contourId++) {
 		summaryContourSize += static_cast < ContourRepresentation* > (objectRepresentation->data.innerContours[contourId])->normalizedContour.size();
 	}
-	
+
 	float resultInBits = (float) ((pointsCountSize + pointRepresentationSize) * (holesCount + 1) + summaryContourSize * pointRepresentationSize + contoursCountSize);
 
 	return (int) ceil(resultInBits / 8);
@@ -40,23 +40,23 @@ int ShapeRepresentationModels::CenteredPoints::getObjectRepresentationSize(Abstr
 void ShapeRepresentationModels::CenteredPoints::ContourRepresentation::initFromPoints(const std::vector < cv::Point > &points)
 {
 	int contourLength = points.size();
-	
+
 	center = cv::Point(0,0);
 	if (contourLength) {
 		int xSum = 0;
 		int ySum = 0;
-	
+
 		for (int i = 0; i < contourLength; i++) {
 			xSum += points[i].x;
 			ySum += points[i].y;
 		}
-		
+
 		center = cv::Point(
 			DpCore::Common::round((float) xSum / contourLength),
 			DpCore::Common::round((float) ySum / contourLength)
 		);
 	}
-	
+
 	normalizedContour.clear();
 	for (int i = 0; i < contourLength; i++) {
 		normalizedContour.push_back(
@@ -65,7 +65,7 @@ void ShapeRepresentationModels::CenteredPoints::ContourRepresentation::initFromP
 				points[i].y - center.y
 			)
 		);
-	}	
+	}
 }
 
 std::vector < cv::Point > ShapeRepresentationModels::CenteredPoints::ContourRepresentation::convert2Points()
@@ -80,6 +80,6 @@ std::vector < cv::Point > ShapeRepresentationModels::CenteredPoints::ContourRepr
 			)
 		);
 	}
-	
+
 	return resultContour;
 }

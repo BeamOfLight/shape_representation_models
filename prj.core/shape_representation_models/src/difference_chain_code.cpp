@@ -1,5 +1,5 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     difference_chain_code.cpp
 
     @author Denis Borisoglebskiy
@@ -23,7 +23,7 @@ std::string ShapeRepresentationModels::DifferenceChainCode::getMethodName()
 {
 	std::stringstream ss;
 	ss << "DCC" << getPinCount();
-	
+
 	return ss.str();
 }
 
@@ -62,7 +62,7 @@ void ShapeRepresentationModels::DifferenceChainCode::ContourRepresentation::init
 	if (pointsCount > 0) {
 		firstPoint = points[0];
 	}
-	
+
 	std::vector < unsigned char > freemanChainCodes;
 	unsigned char curChainCode;
 	if (!use4pin) {
@@ -93,7 +93,7 @@ void ShapeRepresentationModels::DifferenceChainCode::ContourRepresentation::init
 			}
 		}
 	}
-	
+
 	chainCodes.clear();
 	int chainCodesCount = freemanChainCodes.size();
 	if (chainCodesCount) {
@@ -118,7 +118,7 @@ std::vector < cv::Point > ShapeRepresentationModels::DifferenceChainCode::Contou
 		{-1, 0},
 		{-1, 1}
 	};
-	
+
 	std::vector < cv::Point > result;
 	result.push_back(firstPoint);
 	cv::Point currentPoint = firstPoint;
@@ -137,6 +137,6 @@ std::vector < cv::Point > ShapeRepresentationModels::DifferenceChainCode::Contou
 		currentPoint.y += chainCodesInvMap8[curChainCode][0];
 		result.push_back(currentPoint);
 	}
-	
+
 	return result;
 }

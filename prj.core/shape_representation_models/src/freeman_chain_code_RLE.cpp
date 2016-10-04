@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     freeman_chain_code_RLE.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/freeman_chain_code_RLE.h>
@@ -24,7 +24,7 @@ std::string ShapeRepresentationModels::FreemanChainCodeRLE::getMethodName()
 {
 	std::stringstream ss;
 	ss << "FCC" << getPinCount() << "+RLE(" << rleBits << ")";
-	
+
 	return ss.str();
 }
 
@@ -65,7 +65,7 @@ void ShapeRepresentationModels::FreemanChainCodeRLE::ContourRepresentation::init
 	if (pointsCount > 0) {
 		firstPoint = points[0];
 	}
-	
+
 	unsigned char curChainCode;
 	if (!use4pin) {
 		for (int i = 1; i < pointsCount; i++) {
@@ -95,7 +95,7 @@ void ShapeRepresentationModels::FreemanChainCodeRLE::ContourRepresentation::init
 			}
 		}
 	}
-	
+
 	size_t chainCodesWithoutRLECount = chainCodesWithoutRLE.size();
 	unsigned char lastChainCode = -1;
 	size_t chainCodesCount = 0;
@@ -126,12 +126,12 @@ std::vector < cv::Point > ShapeRepresentationModels::FreemanChainCodeRLE::Contou
 		{-1, 0},
 		{-1, 1}
 	};
-	
+
 	std::vector < cv::Point > result;
 	result.push_back(firstPoint);
 	cv::Point currentPoint = firstPoint;
 	size_t chainCodesCount = chainCodes.size();
-	
+
 	for (size_t i = 0; i < chainCodesCount; i++) {
 		for (size_t j = 0; j < rleCodes[i] + 1; j++) {
 			currentPoint.x -= chainCodesInvMap8[chainCodes[i]][1];
@@ -139,6 +139,6 @@ std::vector < cv::Point > ShapeRepresentationModels::FreemanChainCodeRLE::Contou
 			result.push_back(currentPoint);
 		}
 	}
-	
+
 	return result;
 }

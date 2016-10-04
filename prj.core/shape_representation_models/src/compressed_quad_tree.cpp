@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     compressed_quad_tree.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/compressed_quad_tree.h>
@@ -77,7 +77,7 @@ int ShapeRepresentationModels::CompressedQuadTree::getCompressDataSizeCounter(Co
 		} else if (val > 8) {
 			counter += 7;
 		}
-	
+
 		counter = getCompressDataSizeCounter(node->topLeft, counter);
 		counter = getCompressDataSizeCounter(node->topRight, counter);
 		counter = getCompressDataSizeCounter(node->bottomLeft, counter);
@@ -91,7 +91,7 @@ cv::Size ShapeRepresentationModels::CompressedQuadTree::getOptimalSize(int width
 {
 	int value = std::max(width, height);
 	int newValue = (int) pow(2, ceil(log2(value)));
-	
+
 	return cv::Size(newValue, newValue);
 }
 
@@ -110,9 +110,9 @@ ShapeRepresentationModels::CompressedQuadTree::CompressedQuadTreeNode* ShapeRepr
 		} else if (!node->topLeft->value && !node->topRight->value && !node->bottomLeft->value && node->bottomRight->value == 2) {
 			node = node->bottomRight;
 			node->compressParameters.push_back(3);
-		}	
+		}
 	}
-	
+
 	return node;
 }
 
@@ -121,13 +121,13 @@ void ShapeRepresentationModels::CompressedQuadTree::compress(CompressedQuadTreeN
 	if (tree->value == 2) {
 		tree->topLeft = compressNode(tree->topLeft);
 		compress(tree->topLeft);
-		
+
 		tree->topRight = compressNode(tree->topRight);
 		compress(tree->topRight);
-		
+
 		tree->bottomLeft = compressNode(tree->bottomLeft);
 		compress(tree->bottomLeft);
-		
+
 		tree->bottomRight = compressNode(tree->bottomRight);
 		compress(tree->bottomRight);
 	}
@@ -170,27 +170,27 @@ ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresent
 	std::vector < cv::Point > contour = getImageContour(object);
 	cv::Rect rect = boundingRect(contour);
 	cv::Rect area = cv::Rect(rect.x + 1, rect.y + 1, rect.width - 2, rect.height - 2);
-	
+
 	cv::Size imageSize = getOptimalSize(area.width, area.height);
 	cv::Mat image = cv::Mat::ones(imageSize, CV_8UC1) * 255;
 	for (int y = 0; y < area.height; y++) {
 		for (int x = 0; x < area.width; x++) {
-			image.at<uchar>(y, x) = object.at<uchar>(y + area.y, x + area.x);	
+			image.at<uchar>(y, x) = object.at<uchar>(y + area.y, x + area.x);
 		}
 	}
-	
+
 	CompressedQuadTreeNode* tree = new CompressedQuadTreeNode();
 	fillCompressedQuadTree(image, tree);
 	compress(tree);
-	
+
 	objectRepresentation->rect = area;
 	objectRepresentation->tree = tree;
-	
+
 	return objectRepresentation;
 }
 
 void ShapeRepresentationModels::CompressedQuadTree::drawCompressedQuadTree(cv::Mat image, CompressedQuadTreeNode* tree, cv::Rect rect)
-{	
+{
 	int paramsCount = tree->compressParameters.size();
 	for (int i = 0; i < paramsCount; i++) {
 		if (!tree->compressParameters[i]) {
@@ -246,7 +246,7 @@ cv::Mat ShapeRepresentationModels::CompressedQuadTree::decodeSingleObject(Abstra
 		optimalImageSize.width,
 		optimalImageSize.height
 	);
-	
+
 	cv::Mat result = cv::Mat::ones(imageSize, CV_8UC1) * 255;
 	drawCompressedQuadTree(result, objectRepresentation->tree, rect);
 

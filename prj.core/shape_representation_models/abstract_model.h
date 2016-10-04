@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     abstract_model.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -29,12 +29,12 @@ namespace ShapeRepresentationModels
 		struct AbstractRepresentation
 		{
 		};
-	
+
 		virtual std::string getMethodName() = 0;
 		virtual int getMethodType() const = 0;
 		virtual int getObjectRepresentationSize(AbstractRepresentation* encodedObject) = 0;
 		virtual AbstractRepresentation* encodeSingleObject(const cv::Mat &object) = 0;
-		virtual cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject) = 0;	
+		virtual cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject) = 0;
 	};
 }
 

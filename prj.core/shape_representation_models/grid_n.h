@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     grid_n.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -23,7 +23,7 @@ namespace ShapeRepresentationModels {
 	  private:
 		size_t step;
 		size_t pointRepresentationSize;
-	
+
 		unsigned char getNPointValue(const cv::Mat &object, cv::Point pt);
 		void setNPointValue(cv::Mat &object, cv::Point pt, unsigned char value);
 	  public:
@@ -31,18 +31,18 @@ namespace ShapeRepresentationModels {
 		{
 			// Маска силуэта с размерами rect.width/step и rect.height/step
 			cv::Mat mask;
-		
+
 			//кодируемая область на исходном изображении
-			cv::Rect rect;	
+			cv::Rect rect;
 			size_t step;
 		};
 
-		GridN(size_t pointRepresentationSize, size_t step);	
+		GridN(size_t pointRepresentationSize, size_t step);
 		std::string getMethodName();
-	
+
 		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
 		AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
-		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);	
+		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
 	};
 }
 

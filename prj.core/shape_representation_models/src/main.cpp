@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     main.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <ctime>
@@ -42,16 +42,16 @@ std::vector < std::vector < cv::Point > > getAreaContours(cv::Mat areaImage, siz
 	std::vector < std::vector < cv::Point > > contours;
 	std::vector < std::vector < cv::Point > > resultContours;
 	std::vector < cv::Vec4i > hierarchy;
-		
+
 	findContours(areaImage, contours, hierarchy, CV_RETR_TREE , CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
-	
+
 	size_t contours_cnt = contours.size();
 	for( size_t contour_id = 0; contour_id < contours_cnt; contour_id++ ) {
 		if (contours[contour_id].size() > minContourSize) {
 			resultContours.push_back(contours[contour_id]);
 		}
 	}
-	
+
 	return resultContours;
 }
 
@@ -62,7 +62,7 @@ std::vector < cv::Point > processImage(const char* fname)
 	std::vector < cv::Vec4i > hierarchy;
 	findContours(image, srcContours, hierarchy, CV_RETR_TREE , CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
 	image.release();
-	
+
 	return srcContours[1];
 }
 
@@ -83,7 +83,7 @@ std::vector < cv::Mat > getAllObjects(const std::string &prefix, const std::stri
 ShapeRepresentationModels::AbstractModel* getModelByName(std::string modelName)
 {
 	ShapeRepresentationModels::AbstractModel* model;
-	
+
 	if (modelName == "Points") {
 		model = new ShapeRepresentationModels::Points(CONTOURS_COUNT_SIZE, POINTS_COUNT_SIZE, SINGLE_POINT_SIZE);
 	} else if (modelName == "CenteredPoints") {
@@ -178,10 +178,10 @@ ShapeRepresentationModels::AbstractModel* getModelByName(std::string modelName)
 		model = 0;
 		std::cout << "Cannot found model '" << modelName.c_str() << "'" << std::endl;
 	}
-	
+
 	return model;
 }
- 
+
 std::vector < ShapeRepresentationModels::AbstractModel* > initModels(ShapeRepresentationModels::Configuration* configuration)
 {
 	std::vector < ShapeRepresentationModels::AbstractModel* > models;
@@ -196,12 +196,12 @@ std::vector < ShapeRepresentationModels::AbstractModel* > initModels(ShapeRepres
 
 	return models;
 }
- 
+
 ShapeRepresentationModels::Configuration* getConfigurationByFilename(std::string configFilename)
 {
 	ShapeRepresentationModels::Configuration* configuration = new ShapeRepresentationModels::Configuration();
 	cv::FileStorage fs(configFilename.c_str(), cv::FileStorage::READ);
-	
+
 	cv::FileNode modelsSeq = fs["Models"];
 	cv::FileNodeIterator modelIt = modelsSeq.begin(), modelItEnd = modelsSeq.end();
 	for ( ; modelIt != modelItEnd; ++modelIt) {
@@ -209,7 +209,7 @@ ShapeRepresentationModels::Configuration* getConfigurationByFilename(std::string
 			(std::string) (*modelIt)
 		);
 	}
-	
+
 	configuration->firstImageId = fs["FirstImageId"];
 	configuration->lastImageId = fs["LastImageId"];
 	configuration->showImagesFlag = fs["ShowImagesFlag"];
@@ -220,7 +220,7 @@ ShapeRepresentationModels::Configuration* getConfigurationByFilename(std::string
 	if (configuration->enableMultithreading) {
 		configuration->threadsCount = omp_get_max_threads();
 	}
-	
+
 	return configuration;
 }
 
@@ -235,14 +235,14 @@ void showConfiguration(ShapeRepresentationModels::Configuration* configuration)
 		<< "ThreadsCount:\t\t\t" << configuration->threadsCount << std::endl;
 
 	int modelsCount = configuration->modelNames.size();
-	std::cout << "Models(" << modelsCount << "):\t\t\t";	
+	std::cout << "Models(" << modelsCount << "):\t\t\t";
 	for(int i = 0; i < modelsCount; i ++) {
-		std::cout << configuration->modelNames[i] << "\t";	
+		std::cout << configuration->modelNames[i] << "\t";
 	}
-	std::cout << std::endl << std::endl;	
+	std::cout << std::endl << std::endl;
 }
 
-int main(int argc, char** argv) 
+int main(int argc, char** argv)
 {
 	// Load configuration
 	cv::FileStorage config_fs = DpCore::Common::loadConfig(argc, argv, "config/shape_representation_models.yml");
@@ -266,7 +266,7 @@ int main(int argc, char** argv)
 
 	std::cout << "OK" << std::endl;
 	showConfiguration(configuration);
-	
+
 	// Подгрузка силуэтов
 	std::string prefix = DpCore::Filesystem::getRootProjectDirectory() + "data/silhouettes-database/images/a";
 	std::string suffix = ".bmp";
@@ -282,26 +282,26 @@ int main(int argc, char** argv)
 			<< "git clone https://github.com/BeamOfLight/silhouettes-database.git" << std::endl;
 		return 1;
 	}
-	
+
 	// Инициализация моделей способов представления силуэтов
 	std::cout << "Models initialization...\t";
 	std::vector < ShapeRepresentationModels::AbstractModel* > models = initModels(configuration);
 	std::cout << models.size() << std::endl << "Start";
-	
+
 	ShapeRepresentationModels::ShapeRepresentationExperimentalStand* stand = new ShapeRepresentationModels::ShapeRepresentationExperimentalStand(models, objects, configuration);
 	std::cout << "...\t";
 	float processingTimeInSeconds = stand->start();
 	std::cout << "OK" << std::endl;
-	
+
 	std::cout << std::endl << "====================================CONTOUR====================================";
 	stand->show(ShapeRepresentationModels::AbstractModel::MethodType::CONTOUR);
-	
+
 	std::cout << std::endl << "=====================================AREA======================================";
 	stand->show(ShapeRepresentationModels::AbstractModel::MethodType::AREA);
-	
+
 	std::cout << std::endl << "====================================OTHER======================================";
 	stand->show(ShapeRepresentationModels::AbstractModel::MethodType::OTHER);
-	
+
 	std::cout << "Processing time: " << processingTimeInSeconds << " seconds" << std::endl;
 	getchar();
 

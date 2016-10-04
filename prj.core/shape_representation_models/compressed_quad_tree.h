@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     compressed_quad_tree.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -24,12 +24,12 @@ namespace ShapeRepresentationModels {
 			// 0 - Empty, 1 - Full, 2 - P, Need detalization
 			char value;
 			std::vector < unsigned char > compressParameters;
-		
+
 			CompressedQuadTreeNode* topLeft;
 			CompressedQuadTreeNode* topRight;
 			CompressedQuadTreeNode* bottomLeft;
 			CompressedQuadTreeNode* bottomRight;
-		
+
 			CompressedQuadTreeNode()
 			{
 				this->value = -1;
@@ -38,7 +38,7 @@ namespace ShapeRepresentationModels {
 				bottomLeft = 0;
 				bottomRight = 0;
 			}
-		
+
 			void initNodes()
 			{
 				topLeft     = new CompressedQuadTreeNode();
@@ -56,14 +56,14 @@ namespace ShapeRepresentationModels {
 
 		CompressedQuadTree(size_t pointRepresentationSize);
 		std::string getMethodName();
-	
+
 		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
 		AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
-		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);	
+		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
 
 	  private:
 		size_t pointRepresentationSize;
-	
+
 		cv::Vec4i getNodeCounters(CompressedQuadTreeNode* tree, cv::Vec4i counters = cv::Vec4i(0, 0, 0, 0));
 		int getCompressDataSizeCounter(CompressedQuadTreeNode* tree, int counters = 0);
 		cv::Size getOptimalSize(int width, int height);

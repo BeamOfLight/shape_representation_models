@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     polygon_model.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -24,11 +24,11 @@ namespace ShapeRepresentationModels {
 		{
 			std::vector < cv::Point > vertices;
 			double epsilon;
-		
+
 			ContourRepresentation(double epsilon);
 			std::vector < cv::Point > convert2Points();
 			void initFromPoints(const std::vector < cv::Point > &points);
-		};  
+		};
 
 		PolygonModel(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize, double epsilon);
 		std::string getMethodName();

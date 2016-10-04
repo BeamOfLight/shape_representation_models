@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     freeman_chain_code_RLE.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -18,7 +18,7 @@ namespace ShapeRepresentationModels {
 	  protected:
 		bool use4pin; // флаг использования 4-связного кода Фримана
 		size_t rleBits; // Биты, выделяемые под RLE поле
-	
+
 		int getPinCount();
 		AbstractContourRepresentation* getNewContourRepresentation();
 	  public:
@@ -29,11 +29,11 @@ namespace ShapeRepresentationModels {
 			std::vector < size_t > rleCodes;
 			bool use4pin;
 			size_t rleBits;
-		
+
 			ContourRepresentation(bool use4pin, size_t rleBits);
 			std::vector < cv::Point > convert2Points();
 			void initFromPoints(const std::vector < cv::Point > &points);
-		};  
+		};
 
 		FreemanChainCodeRLE(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize, bool use4pin, size_t rleBits);
 		std::string getMethodName();

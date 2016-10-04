@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     run_length_encoding.h
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -32,10 +32,10 @@ namespace ShapeRepresentationModels {
 
 		RunLengthEncoding(size_t pointRepresentationSize);
 		std::string getMethodName();
-	
+
 		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
 		AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
-		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);	
+		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
 	};
 }
 

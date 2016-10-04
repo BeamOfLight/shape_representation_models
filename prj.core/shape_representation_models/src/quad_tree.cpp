@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     quad_tree.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/quad_tree.h>
@@ -35,7 +35,7 @@ cv::Size ShapeRepresentationModels::QuadTree::getOptimalSize(int width, int heig
 {
 	int value = std::max(width, height);
 	int newValue = (int) pow(2, ceil(log2(value)));
-	
+
 	return cv::Size(newValue, newValue);
 }
 
@@ -72,7 +72,7 @@ void ShapeRepresentationModels::QuadTree::fillQuadTree(cv::Mat image, QuadTreeNo
 }
 
 void ShapeRepresentationModels::QuadTree::drawQuadTree(cv::Mat image, QuadTreeNode* tree, cv::Rect rect)
-{	
+{
 	if (tree->value == 2) {
 		drawQuadTree(
 			image,
@@ -142,16 +142,16 @@ ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresent
 	cv::Mat image = cv::Mat::ones(imageSize, CV_8UC1) * 255;
 	for (int y = 0; y < area.height; y++) {
 		for (int x = 0; x < area.width; x++) {
-			image.at<uchar>(y, x) = object.at < uchar > (y + area.y, x + area.x);	
+			image.at<uchar>(y, x) = object.at < uchar > (y + area.y, x + area.x);
 		}
 	}
 
 	QuadTreeNode* tree = new QuadTreeNode();
 	fillQuadTree(image, tree);
-	
+
 	objectRepresentation->rect = area;
 	objectRepresentation->tree = tree;
-	
+
 	return objectRepresentation;
 }
 
@@ -169,7 +169,7 @@ cv::Mat ShapeRepresentationModels::QuadTree::decodeSingleObject(AbstractModel::A
 		optimalImageSize.width,
 		optimalImageSize.height
 	);
-	
+
 	cv::Mat result = cv::Mat::ones(imageSize, CV_8UC1) * 255;
 	drawQuadTree(result, objectRepresentation->tree, rect);
 

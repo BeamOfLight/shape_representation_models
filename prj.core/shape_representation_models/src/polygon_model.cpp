@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     polygon_model.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/polygon_model.h>
@@ -21,7 +21,7 @@ std::string ShapeRepresentationModels::PolygonModel::getMethodName()
 	ss.precision(1);
 	ss.setf(std::ios_base::fixed, std::ios_base::floatfield);
 	ss << epsilon << ")";
-	
+
 	return ss.str();
 }
 
@@ -54,6 +54,6 @@ void ShapeRepresentationModels::PolygonModel::ContourRepresentation::initFromPoi
 }
 
 std::vector < cv::Point > ShapeRepresentationModels::PolygonModel::ContourRepresentation::convert2Points()
-{	
+{
 	return vertices;
 }

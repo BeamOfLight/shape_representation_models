@@ -1,9 +1,9 @@
 /**
-	https://github.com/BeamOfLight/shape_representation_models.git
+    https://github.com/BeamOfLight/shape_representation_models.git
     grid_n.cpp
 
     @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+    @version 1.0 2016-10-04
 */
 
 #include <shape_representation_models/grid_n.h>
@@ -18,7 +18,7 @@ std::string ShapeRepresentationModels::GridN::getMethodName()
 {
 	std::stringstream ss;
 	ss << "GridN(" << step << ")";
-	
+
 	return ss.str();
 }
 
@@ -28,7 +28,7 @@ int ShapeRepresentationModels::GridN::getObjectRepresentationSize(AbstractModel:
 	Representation* objectRepresentation = static_cast < Representation* > (abstractObjectRepresentation);
 	int headerSize = 2 * pointRepresentationSize + 8;
 	float resultInBits = (float) (objectRepresentation->mask.rows * objectRepresentation->mask.cols + headerSize);
-	
+
 	return (int) ceil(resultInBits / 8);
 }
 
@@ -42,7 +42,7 @@ unsigned char ShapeRepresentationModels::GridN::getNPointValue(const cv::Mat &ob
 			}
 		}
 	}
-	
+
 	return (step * step <= 2 * cnt) ? 255 : 0;
 }
 
@@ -61,7 +61,7 @@ ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresent
 	std::vector < cv::Point > contour = getImageContour(object);
 	cv::Rect rect = boundingRect(contour);
 	objectRepresentation->rect = cv::Rect(rect.x + 1, rect.y + 1, rect.width - 2, rect.height - 2);
-	
+
 	cv::Point ptA = cv::Point(objectRepresentation->rect.x, objectRepresentation->rect.y);
 	cv::Point ptB = cv::Point(
 		objectRepresentation->rect.x + objectRepresentation->rect.width,
@@ -73,7 +73,7 @@ ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresent
 	ptB.x = step * ((int) ceil((float) ptB.x / step)) - 1;
 	ptB.y = step * ((int) ceil((float) ptB.y / step)) - 1;
 	objectRepresentation->rect = cv::Rect(ptA.x, ptA.y, ptB.x - ptA.x, ptB.y - ptA.y);
-	
+
 	cv::Size maskSize = cv::Size(
 		(ptB.x - ptA.x) / step,
 		(ptB.y - ptA.y) / step
@@ -84,7 +84,7 @@ ShapeRepresentationModels::AbstractModel::AbstractRepresentation* ShapeRepresent
 			objectRepresentation->mask.at < uchar > (y, x) = getNPointValue(object, cv::Point(ptA.y + step * y, ptA.x + step * x));
 		}
 	}
-	
+
 	return objectRepresentation;
 }
 
@@ -96,7 +96,7 @@ cv::Mat ShapeRepresentationModels::GridN::decodeSingleObject(ShapeRepresentation
 		objectRepresentation->rect.y + objectRepresentation->rect.height
 	);
 	cv::Mat result = cv::Mat::ones(imageSize, CV_8UC1);
-	
+
 	for (int y = 0; y < objectRepresentation->mask.rows; y++) {
 		for (int x = 0; x < objectRepresentation->mask.cols; x++) {
 			setNPointValue(
@@ -109,6 +109,6 @@ cv::Mat ShapeRepresentationModels::GridN::decodeSingleObject(ShapeRepresentation
 			);
 		}
 	}
-	
+
 	return result;
 }
