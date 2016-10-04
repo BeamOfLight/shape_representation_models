@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    abstract_contour_model.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/abstract_contour_model.h>
 
 ShapeRepresentationModels::AbstractContourModel::AbstractContourModel(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize)

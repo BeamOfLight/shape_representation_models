@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    compressed_quad_tree.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/compressed_quad_tree.h>
 
 ShapeRepresentationModels::CompressedQuadTree::CompressedQuadTree(size_t pointRepresentationSize)

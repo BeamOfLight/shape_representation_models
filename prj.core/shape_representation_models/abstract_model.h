@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    abstract_model.h
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #pragma once
 #ifndef SHAPE_REPRESENTATION_MODELS_ABSTRACT_MODEL_H
 #define SHAPE_REPRESENTATION_MODELS_ABSTRACT_MODEL_H

@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    shape_representation_experimantal_stand.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/shape_representation_experimental_stand.h>
 
 ShapeRepresentationModels::ShapeRepresentationExperimentalStand::ShapeRepresentationExperimentalStand(

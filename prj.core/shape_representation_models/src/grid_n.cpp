@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    grid_n.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/grid_n.h>
 
 ShapeRepresentationModels::GridN::GridN(size_t pointRepresentationSize, size_t step)

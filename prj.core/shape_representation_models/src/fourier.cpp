@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    fourier.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/fourier.h>
 
 ShapeRepresentationModels::Fourier::Fourier(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize, int fourierDescriptorSize)

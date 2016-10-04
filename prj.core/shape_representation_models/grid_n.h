@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    grid_n.h
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #pragma once
 #ifndef SHAPE_REPRESENTATION_MODELS_GRID_N_H
 #define SHAPE_REPRESENTATION_MODELS_GRID_N_H

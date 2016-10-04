@@ -1,3 +1,11 @@
+/**
+    https://github.com/BeamOfLight/shape_representation_models.git
+    contour_comparer.h
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #pragma once
 #ifndef DPCORE_CONTOUR_COMPARER_H
 #define DPCORE_CONTOUR_COMPARER_H

@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    object.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <dpcore/object.h>
 
 DpCore::ObjectRepresentation < std::vector < cv::Point > > DpCore::Object::convertObject2PointRepresentation(const cv::Mat &object, size_t minContourSize)

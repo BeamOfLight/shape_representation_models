@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    object.h
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #pragma once
 #ifndef DPCORE_OBJECT_H
 #define DPCORE_OBJECT_H

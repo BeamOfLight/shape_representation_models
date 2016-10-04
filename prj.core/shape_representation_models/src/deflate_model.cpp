@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    deflate_model.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/deflate_model.h>
 
 ShapeRepresentationModels::DeflateModel::DeflateModel(size_t pointRepresentationSize, size_t compressionLevel, size_t strategy, bool biLevel)

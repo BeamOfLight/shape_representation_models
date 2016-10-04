@@ -1,3 +1,11 @@
+/**
+    https://github.com/BeamOfLight/shape_representation_models.git
+    contour_comparer.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <dpcore/contour_comparer.h>
 
 DpCore::ContourComparer::ContourComparer(std::vector < cv::Point > srcContour, std::vector < cv::Point > dstContour)

@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    filesystem.h
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #pragma once
 #ifndef DPCORE_FILESYSTEM_H
 #define DPCORE_FILESYSTEM_H

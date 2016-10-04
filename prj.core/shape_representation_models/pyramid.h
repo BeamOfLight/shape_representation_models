@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    pyramid.h
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #pragma once
 #ifndef SHAPE_REPRESENTATION_MODELS_PYRAMID_H
 #define SHAPE_REPRESENTATION_MODELS_PYRAMID_H

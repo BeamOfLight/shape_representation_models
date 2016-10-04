@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    geometry.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <dpcore/geometry.h>
 
 double DpCore::Geometry::distance(const cv::Point &pt1, const cv::Point &pt2)

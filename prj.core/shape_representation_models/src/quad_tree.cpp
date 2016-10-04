@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    quad_tree.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/quad_tree.h>
 
 ShapeRepresentationModels::QuadTree::QuadTree(size_t pointRepresentationSize)

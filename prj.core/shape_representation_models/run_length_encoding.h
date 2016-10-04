@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    run_length_encoding.h
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #pragma once
 #ifndef SHAPE_REPRESENTATION_MODELS_RUN_LENGTH_ENCODING_H
 #define SHAPE_REPRESENTATION_MODELS_RUN_LENGTH_ENCODING_H

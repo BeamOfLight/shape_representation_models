@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    run_length_encoding.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/run_length_encoding.h>
 
 ShapeRepresentationModels::RunLengthEncoding::RunLengthEncoding(size_t pointRepresentationSize)

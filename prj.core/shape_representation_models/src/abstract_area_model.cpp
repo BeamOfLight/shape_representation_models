@@ -1,3 +1,11 @@
+/**
+	https://github.com/BeamOfLight/shape_representation_models.git
+    abstract_area_model.cpp
+
+    @author Denis Borisoglebskiy
+    @version 1.0 2016-10-04 
+*/
+
 #include <shape_representation_models/abstract_area_model.h>
 
 int ShapeRepresentationModels::AbstractAreaModel::getMethodType() const
