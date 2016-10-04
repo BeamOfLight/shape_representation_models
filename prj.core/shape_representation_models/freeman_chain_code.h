@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    freeman_chain_code.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  freeman_chain_code.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -13,29 +13,29 @@
 #include <shape_representation_models/abstract_contour_model.h>
 
 namespace ShapeRepresentationModels {
-	class FreemanChainCode : public AbstractContourModel
-	{
-	  protected:
-		bool use4pin; // флаг использования 4-связного кода Фримана
+  class FreemanChainCode : public AbstractContourModel
+  {
+    protected:
+      bool use4pin; // флаг использования 4-связного кода Фримана
 
-		int getPinCount();
-		AbstractContourRepresentation* getNewContourRepresentation();
-	  public:
-		struct ContourRepresentation : public AbstractContourRepresentation
-		{
-			cv::Point firstPoint;
-			std::vector < unsigned char > chainCodes;
-			bool use4pin;
+      int getPinCount();
+      AbstractContourRepresentation* getNewContourRepresentation();
+    public:
+      struct ContourRepresentation : public AbstractContourRepresentation
+      {
+        cv::Point firstPoint;
+        std::vector < unsigned char > chainCodes;
+        bool use4pin;
 
-			ContourRepresentation(bool use4pin);
-			std::vector < cv::Point > convert2Points();
-			void initFromPoints(const std::vector < cv::Point > &points);
-		};
+        ContourRepresentation(bool use4pin);
+        std::vector < cv::Point > convert2Points();
+        void initFromPoints(const std::vector < cv::Point > &points);
+      };
 
-		FreemanChainCode(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize, bool use4pin);
-		std::string getMethodName();
-		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
-	};
+      FreemanChainCode(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize, bool use4pin);
+      std::string getMethodName();
+      int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
+  };
 }
 
 #endif

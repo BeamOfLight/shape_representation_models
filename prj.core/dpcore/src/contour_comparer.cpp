@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    contour_comparer.cpp
+  https://github.com/BeamOfLight/shape_representation_models.git
+  contour_comparer.cpp
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #include <dpcore/contour_comparer.h>

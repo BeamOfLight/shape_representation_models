@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    shape_representation_experimental_stand.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  shape_representation_experimental_stand.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -25,56 +25,56 @@
 #include <shape_representation_models/configuration.h>
 
 namespace ShapeRepresentationModels {
-	struct SummaryStat
-	{
-		float sum;
-		float min;
-		float max;
-		float avg;
-		float sigma;
-	};
+  struct SummaryStat
+  {
+    float sum;
+    float min;
+    float max;
+    float avg;
+    float sigma;
+  };
 
-	struct ModelInfo
-	{
-		std::string methodName;
-		SummaryStat areaDiff;
-		int representationSize;
-		float encodeTime;
-		float decodeTime;
-	};
+  struct ModelInfo
+  {
+    std::string methodName;
+    SummaryStat areaDiff;
+    int representationSize;
+    float encodeTime;
+    float decodeTime;
+  };
 
-	class ShapeRepresentationExperimentalStand
-	{
-	  protected:
-		std::vector < cv::Mat > srcObjects;
-		std::vector < AbstractModel* > models;
-		std::vector < ModelInfo* > modelsInfo;
-		Configuration* configuration;
+  class ShapeRepresentationExperimentalStand
+  {
+    protected:
+      std::vector < cv::Mat > srcObjects;
+      std::vector < AbstractModel* > models;
+      std::vector < ModelInfo* > modelsInfo;
+      Configuration* configuration;
 
-		// Работа с потоками
-		std::vector < cv::Mat > srcThreadObjects;
-		std::vector < AbstractModel::AbstractRepresentation* > encodedThreadObjects;
-		std::vector < cv::Mat > decodedThreadObjects;
-		std::vector < int > threadStatus;
+      // Работа с потоками
+      std::vector < cv::Mat > srcThreadObjects;
+      std::vector < AbstractModel::AbstractRepresentation* > encodedThreadObjects;
+      std::vector < cv::Mat > decodedThreadObjects;
+      std::vector < int > threadStatus;
 
-		void encodeObjectThreadFunc(std::pair < int, int > const &params);
-		void decodeObjectThreadFunc(std::pair < int, int > const &params);
+      void encodeObjectThreadFunc(std::pair < int, int > const &params);
+      void decodeObjectThreadFunc(std::pair < int, int > const &params);
 
-		float getTimeInSeconds(clock_t time);
-		SummaryStat getAreaDiffSummaryStat(int modelId, std::vector < cv::Mat > const &dstObjects);
-		cv::Mat normalizeBinaryImage(cv::Mat image);
-	  public:
-		ShapeRepresentationExperimentalStand(std::vector < AbstractModel* >, std::vector < cv::Mat >, Configuration*);
-		float compare(cv::Mat object1, cv::Mat object2, int objectId = 0);
-		float start();
-		void startForSingleModel(int);
-		int getModelRepresentationSize(int modelId, std::vector < AbstractModel::AbstractRepresentation* > encodedObjects);
-		std::vector < ModelInfo* > getModelsInfo();
-		void show(int methodType);
+      float getTimeInSeconds(clock_t time);
+      SummaryStat getAreaDiffSummaryStat(int modelId, std::vector < cv::Mat > const &dstObjects);
+      cv::Mat normalizeBinaryImage(cv::Mat image);
+    public:
+      ShapeRepresentationExperimentalStand(std::vector < AbstractModel* >, std::vector < cv::Mat >, Configuration*);
+      float compare(cv::Mat object1, cv::Mat object2, int objectId = 0);
+      float start();
+      void startForSingleModel(int);
+      int getModelRepresentationSize(int modelId, std::vector < AbstractModel::AbstractRepresentation* > encodedObjects);
+      std::vector < ModelInfo* > getModelsInfo();
+      void show(int methodType);
 
-		std::vector < AbstractModel::AbstractRepresentation* > encode(int modelId, std::vector < cv::Mat > objects);
-		std::vector < cv::Mat > decode(int modelId, std::vector < AbstractModel::AbstractRepresentation* > encodedObjects);
-	};
+      std::vector < AbstractModel::AbstractRepresentation* > encode(int modelId, std::vector < cv::Mat > objects);
+      std::vector < cv::Mat > decode(int modelId, std::vector < AbstractModel::AbstractRepresentation* > encodedObjects);
+  };
 }
 
 #endif

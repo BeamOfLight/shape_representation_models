@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    geometry.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  geometry.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -23,16 +23,16 @@
 
 namespace DpCore
 {
-	namespace Geometry
-	{
-		double distance(const cv::Point &pt1, const cv::Point &pt2);
-		double distance(const cv::Point2d &pt1, const cv::Point2d &pt2);
-		double length(const cv::Point &pt);
-		double angleBetweenVectors(const cv::Point2d &pt1, const cv::Point2d &pt2);
-		double angle4ThreePoints(const cv::Point &pt1, const cv::Point &pt2, const cv::Point &pt3);
-		cv::Point roundPoint(const cv::Point2d &pt);
-		cv::Point2d centerPoint(const cv::Point2d &pt1, const cv::Point2d &pt2);
-	}
+  namespace Geometry
+  {
+    double distance(const cv::Point &pt1, const cv::Point &pt2);
+    double distance(const cv::Point2d &pt1, const cv::Point2d &pt2);
+    double length(const cv::Point &pt);
+    double angleBetweenVectors(const cv::Point2d &pt1, const cv::Point2d &pt2);
+    double angle4ThreePoints(const cv::Point &pt1, const cv::Point &pt2, const cv::Point &pt3);
+    cv::Point roundPoint(const cv::Point2d &pt);
+    cv::Point2d centerPoint(const cv::Point2d &pt1, const cv::Point2d &pt2);
+  }
 }
 
 #endif

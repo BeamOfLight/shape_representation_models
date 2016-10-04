@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    pyramid.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  pyramid.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -16,27 +16,27 @@
 #include <shape_representation_models/abstract_area_model.h>
 
 namespace ShapeRepresentationModels {
-	class Pyramid : public AbstractAreaModel
-	{
-	  private:
-		size_t pointRepresentationSize;
-		size_t levelsCount;
+  class Pyramid : public AbstractAreaModel
+  {
+    private:
+      size_t pointRepresentationSize;
+      size_t levelsCount;
 
-		cv::Size getOptimalSize(int width, int height);
-	  public:
-		struct Representation : public AbstractRepresentation
-		{
-			std::vector < cv::Mat > masks;
-			cv::Rect rect;
-		};
+      cv::Size getOptimalSize(int width, int height);
+    public:
+      struct Representation : public AbstractRepresentation
+      {
+        std::vector < cv::Mat > masks;
+        cv::Rect rect;
+      };
 
-		Pyramid(size_t pointRepresentationSize, size_t levelsCount);
-		std::string getMethodName();
+      Pyramid(size_t pointRepresentationSize, size_t levelsCount);
+      std::string getMethodName();
 
-		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
-		AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
-		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
-	};
+      int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
+      AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
+      cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
+  };
 }
 
 #endif

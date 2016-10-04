@@ -1,27 +1,27 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    filesystem.cpp
+  https://github.com/BeamOfLight/shape_representation_models.git
+  filesystem.cpp
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #include <dpcore/filesystem.h>
 
 std::string DpCore::Filesystem::getRootProjectDirectory()
 {
-	std::string addition_path;
+  std::string addition_path;
 #ifdef __linux__
-	addition_path = "/../";
+  addition_path = "/../";
 #else
-	addition_path = "\\..\\..\\..\\";
+  addition_path = "\\..\\..\\..\\";
 #endif
-	return DpCore::Filesystem::getExePath() + addition_path;
+  return DpCore::Filesystem::getExePath() + addition_path;
 }
 
 std::string DpCore::Filesystem::getExePath()
 {
-	return std::string(getcwd(NULL,0));
+  return std::string(getcwd(NULL,0));
 }
 
 bool DpCore::Filesystem::isFileExist(const std::string &filename)
@@ -55,17 +55,17 @@ std::string DpCore::Filesystem::canonizePath(const std::string &path)
 std::string DpCore::Filesystem::getCrossPlatformFileName(const std::string &path)
 {
 #ifdef __linux__
-	std::string result = canonizePath(path);
+  std::string result = canonizePath(path);
 #else
-	std::string result = canonizePath(path);
-	for (size_t i = 0; i < result.length(); i++) {
-	  if (result[i] == '/') {
+  std::string result = canonizePath(path);
+  for (size_t i = 0; i < result.length(); i++) {
+    if (result[i] == '/') {
         result[i] = '\\';
-	  }
-	}
+    }
+  }
 #endif
 
-	return  DpCore::Filesystem::getRootProjectDirectory() + result;
+  return  DpCore::Filesystem::getRootProjectDirectory() + result;
 }
 
 std::string DpCore::Filesystem::fileName(const std::string &path)

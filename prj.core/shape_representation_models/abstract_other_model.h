@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    abstract_other_model.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  abstract_other_model.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -13,11 +13,11 @@
 #include <shape_representation_models/abstract_model.h>
 
 namespace ShapeRepresentationModels {
-	class AbstractOtherModel: public AbstractModel
-	{
-	  public:
-		int getMethodType() const;
-	};
+  class AbstractOtherModel: public AbstractModel
+  {
+    public:
+    	int getMethodType() const;
+  };
 }
 
 #endif

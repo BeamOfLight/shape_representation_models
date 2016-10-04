@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    grid.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  grid.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -18,24 +18,24 @@
 #include <shape_representation_models/abstract_area_model.h>
 
 namespace ShapeRepresentationModels {
-	class Grid : public AbstractAreaModel
-	{
-	  private:
-		size_t pointRepresentationSize;
-	  public:
-		struct Representation : public AbstractRepresentation
-		{
-			cv::Mat mask;
-			cv::Rect rect;
-		};
+  class Grid : public AbstractAreaModel
+  {
+    private:
+      size_t pointRepresentationSize;
+    public:
+      struct Representation : public AbstractRepresentation
+      {
+        cv::Mat mask;
+        cv::Rect rect;
+      };
 
-		Grid(size_t pointRepresentationSize);
-		std::string getMethodName();
+      Grid(size_t pointRepresentationSize);
+      std::string getMethodName();
 
-		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
-		AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
-		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
-	};
+      int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
+      AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
+      cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
+  };
 }
 
 #endif

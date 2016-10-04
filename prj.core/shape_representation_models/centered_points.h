@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    centered_points.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  centered_points.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -13,24 +13,24 @@
 #include <shape_representation_models/abstract_contour_model.h>
 
 namespace ShapeRepresentationModels {
-	class CenteredPoints : public AbstractContourModel
-	{
-	  protected:
-		AbstractContourRepresentation* getNewContourRepresentation();
-	  public:
-		struct ContourRepresentation : public AbstractContourRepresentation
-		{
-			cv::Point center;
-			std::vector < cv::Point > normalizedContour;
+  class CenteredPoints : public AbstractContourModel
+  {
+    protected:
+      AbstractContourRepresentation* getNewContourRepresentation();
+    public:
+      struct ContourRepresentation : public AbstractContourRepresentation
+      {
+        cv::Point center;
+        std::vector < cv::Point > normalizedContour;
 
-			std::vector < cv::Point > convert2Points();
-			void initFromPoints(const std::vector < cv::Point > &points);
-		};
+        std::vector < cv::Point > convert2Points();
+        void initFromPoints(const std::vector < cv::Point > &points);
+      };
 
-		CenteredPoints(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize);
-		std::string getMethodName();
-		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
-	};
+      CenteredPoints(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize);
+      std::string getMethodName();
+      int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
+  };
 }
 
 #endif

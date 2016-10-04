@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    object.h
+	https://github.com/BeamOfLight/shape_representation_models.git
+	object.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04 
+	@author Denis Borisoglebskiy
+	@version 1.0 2016-10-04
 */
 
 #pragma once
@@ -23,23 +23,23 @@
 namespace DpCore
 {
   template <typename T>
-	struct ObjectRepresentation
-	{
-		T outterContour;
-		std::vector < T > innerContours;
-	};
+  struct ObjectRepresentation
+  {
+    T outterContour;
+    std::vector < T > innerContours;
+  };
 
   class Object
   {
     public:
-	  // Конвертирует силуэт объекта в контурный дескриптор объекта
-	  static ObjectRepresentation < std::vector < cv::Point > > convertObject2PointRepresentation(const cv::Mat &object, size_t minContourSize = 0);
+			// Конвертирует силуэт объекта в контурный дескриптор объекта
+			static ObjectRepresentation < std::vector < cv::Point > > convertObject2PointRepresentation(const cv::Mat &object, size_t minContourSize = 0);
 
-	  // Восстанавливает контурный дескриптор объекта в силуэт объекта
-	  static cv::Mat convertPointRepresentation2Object(ObjectRepresentation < std::vector < cv::Point > > pointRepresentation);
+			// Восстанавливает контурный дескриптор объекта в силуэт объекта
+			static cv::Mat convertPointRepresentation2Object(ObjectRepresentation < std::vector < cv::Point > > pointRepresentation);
 
-	  // Сравнение двух объектов через площадь области разности
-	  static float compareObjects(const cv::Mat &object1, const cv::Mat &object2);
+			// Сравнение двух объектов через площадь области разности
+			static float compareObjects(const cv::Mat &object1, const cv::Mat &object2);
   };
 }
 

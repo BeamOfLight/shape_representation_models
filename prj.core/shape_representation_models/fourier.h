@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    fourier.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  fourier.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -13,31 +13,31 @@
 #include <shape_representation_models/abstract_contour_model.h>
 
 namespace ShapeRepresentationModels {
-	class Fourier : public AbstractContourModel
-	{
-	  protected:
-		int fourierDescriptorSize;
+  class Fourier : public AbstractContourModel
+  {
+    protected:
+      int fourierDescriptorSize;
 
-		AbstractContourRepresentation* getNewContourRepresentation();
-	  public:
-		struct ContourRepresentation : public AbstractContourRepresentation
-		{
-			std::vector < cv::Vec2f > fourierDescriptorLeft;
-			std::vector < cv::Vec2f > fourierDescriptorRight;
-			int contourLength;
-			int fourierDescriptorSize;
+      AbstractContourRepresentation* getNewContourRepresentation();
+    public:
+      struct ContourRepresentation : public AbstractContourRepresentation
+      {
+        std::vector < cv::Vec2f > fourierDescriptorLeft;
+        std::vector < cv::Vec2f > fourierDescriptorRight;
+        int contourLength;
+        int fourierDescriptorSize;
 
-			int getResultFourierDescriptorSize();
+        int getResultFourierDescriptorSize();
 
-			ContourRepresentation(int fourierDescriptorSize);
-			std::vector < cv::Point > convert2Points();
-			void initFromPoints(const std::vector < cv::Point > &points);
-		};
+        ContourRepresentation(int fourierDescriptorSize);
+        std::vector < cv::Point > convert2Points();
+        void initFromPoints(const std::vector < cv::Point > &points);
+      };
 
-		Fourier(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize, int fourierDescriptorSize);
-		std::string getMethodName();
-		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
-	};
+      Fourier(size_t contoursCountSize, size_t pointsCountSize, size_t pointRepresentationSize, int fourierDescriptorSize);
+      std::string getMethodName();
+      int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
+  };
 }
 
 #endif

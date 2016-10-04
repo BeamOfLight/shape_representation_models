@@ -1,9 +1,9 @@
 /**
-    https://github.com/BeamOfLight/shape_representation_models.git
-    deflate_model.h
+  https://github.com/BeamOfLight/shape_representation_models.git
+  deflate_model.h
 
-    @author Denis Borisoglebskiy
-    @version 1.0 2016-10-04
+  @author Denis Borisoglebskiy
+  @version 1.0 2016-10-04
 */
 
 #pragma once
@@ -20,27 +20,27 @@ https://ru.wikipedia.org/wiki/Deflate
 LZ77 + Huffman coding
 */
 namespace ShapeRepresentationModels {
-	class DeflateModel : public AbstractOtherModel
-	{
-	  private:
-		size_t pointRepresentationSize;
-		size_t compressionLevel;
-		size_t strategy;
-		bool biLevel;
+  class DeflateModel : public AbstractOtherModel
+  {
+    private:
+      size_t pointRepresentationSize;
+      size_t compressionLevel;
+      size_t strategy;
+      bool biLevel;
 
-	  public:
-		struct Representation : public AbstractRepresentation
-		{
-			std::vector < uchar > buffer;
-		};
+    public:
+      struct Representation : public AbstractRepresentation
+      {
+        std::vector < uchar > buffer;
+      };
 
-		DeflateModel(size_t pointRepresentationSize, size_t compressionLevel, size_t strategy, bool biLevel);
-		std::string getMethodName();
+      DeflateModel(size_t pointRepresentationSize, size_t compressionLevel, size_t strategy, bool biLevel);
+      std::string getMethodName();
 
-		int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
-		AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
-		cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
-	};
+      int getObjectRepresentationSize(AbstractRepresentation* encodedObject);
+      AbstractRepresentation* encodeSingleObject(const cv::Mat &object);
+      cv::Mat decodeSingleObject(AbstractRepresentation* encodedObject);
+  };
 }
 
 #endif
