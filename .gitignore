@@ -30,4 +30,4 @@
 
 build/*
 bin.*
-data/silhouettes-database
+data/images/silhouettes-database

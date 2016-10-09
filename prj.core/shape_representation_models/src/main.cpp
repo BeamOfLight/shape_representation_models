@@ -13,6 +13,10 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
 
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+
 #include <dpcore/common.h>
 #include <dpcore/filesystem.h>
 #include <shape_representation_models/shape_representation_experimental_stand.h>
@@ -70,10 +74,20 @@ std::vector < cv::Mat > getAllObjects(const std::string &prefix, const std::stri
 {
   std::vector < cv::Mat > objects;
   cv::Mat tmp;
+  bool color_invertion = true;
+
+  std::stringstream ss;
   for (int image_id = first_image_id; image_id <= last_image_id; image_id++) {
-    tmp = cv::imread((prefix + DpCore::Common::toString(image_id) + suffix).c_str(), 0);
+    ss.str("");
+    ss << prefix << std::setw(3) << std::setfill('0') << image_id << suffix;
+    tmp = cv::imread(ss.str(), 0);
     if (!tmp.empty()) {
+      if (color_invertion) {
+        tmp = cv::Mat::ones(tmp.size(), CV_8UC1) - tmp;
+      }
       objects.push_back(tmp.clone());
+    } else {
+      std::cout << "Image " << ss.str() << " not found" << std::endl;
     }
   }
 
@@ -268,7 +282,7 @@ int main(int argc, char** argv)
   showConfiguration(configuration);
 
   // Подгрузка силуэтов
-  std::string prefix = DpCore::Filesystem::getRootProjectDirectory() + "data/silhouettes-database/images/a";
+  std::string prefix = DpCore::Filesystem::getRootProjectDirectory() + "data/images/silhouettes-database/polygonal_shapes/polygonal_shape_";
   std::string suffix = ".bmp";
   std::cout << "Image path sample: " << prefix << DpCore::Common::toString(1) << suffix << std::endl;
 
