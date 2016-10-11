@@ -6,6 +6,9 @@ include(prj.cmake/dpInstall.cmake)
 
 # Options
 # -----------------------------------------------------------------------
+option(BUILD_UTILS  "Build utils" ON)
+option(BUILD_TESTS  "Build tests" ON)
+
 
 # Determine the platform
 # -----------------------------------------------------------------------
@@ -135,6 +138,14 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/prj.core
 )
 
+if (BUILD_UTILS)
+  include_directories(${CMAKE_SOURCE_DIR}/prj.utils)
+endif()
+
+if (BUILD_TESTS)
+  include_directories(${CMAKE_SOURCE_DIR}/prj.tests)
+endif()
+
 # Setup special definitions
 # -----------------------------------------------------------------------
 # -----------------------------------------------------------------------
@@ -172,8 +183,8 @@ if( CMAKE_COMPILER_IS_GNUCXX )
     set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g" )
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g" )
   ELSE()
-    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O4" )
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O4" )
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2" )
   endif()
 
   set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11" )
@@ -189,3 +200,11 @@ endif()
 add_subdirectory(config)
 add_subdirectory(prj.cmake)
 add_subdirectory(prj.core)
+
+if (BUILD_UTILS)
+  add_subdirectory(prj.utils)
+endif()
+
+if (BUILD_TESTS)
+  add_subdirectory(prj.tests)
+endif()
