@@ -1,1 +1,2 @@
 add_subdirectory(utils)
+add_subdirectory(database_reader_config_test)

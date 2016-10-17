@@ -1,0 +1,14 @@
+%YAML:1.0
+databases:
+   -
+      database: silhouettes_database
+      categories:
+         -
+            category: cats
+            images: all
+         -
+            category: dogs
+            images: "1-10, 15, 18-21"
+         -
+            category: shapes
+            images: "51, 63-70"
