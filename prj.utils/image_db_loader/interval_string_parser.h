@@ -5,15 +5,15 @@ Code from http://stackoverflow.com/a/18764531
 */
 
 #pragma once
-#ifndef TEXT_INTERVAL_STRING_PARSER_H
-#define TEXT_INTERVAL_STRING_PARSER_H
+#ifndef IMAGE_DB_LOADER_INTERVAL_STRING_PARSER_H
+#define IMAGE_DB_LOADER_INTERVAL_STRING_PARSER_H
 
 #include <vector>
 #include <string>
 #include <sstream>
 #include <iostream>
 
-namespace Text
+namespace ImageDbLoader
 {
   namespace IntervalStringParser
   {

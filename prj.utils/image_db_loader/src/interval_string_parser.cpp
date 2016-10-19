@@ -3,12 +3,12 @@ Code from http://stackoverflow.com/a/18764531
 
 @author Neil Kirk	http://ideone.com/2W99Tt
 */
-#include <text/interval_string_parser.h>
+#include <image_db_loader/interval_string_parser.h>
 
 /**
 @author Neil Kirk	http://ideone.com/2W99Tt
 */
-int Text::IntervalStringParser::convertString2Int(const std::string& str)
+int ImageDbLoader::IntervalStringParser::convertString2Int(const std::string& str)
 {
 	std::stringstream ss(str);
 	int x;
@@ -23,7 +23,7 @@ int Text::IntervalStringParser::convertString2Int(const std::string& str)
 /**
 @author Neil Kirk	http://ideone.com/2W99Tt
 */
-std::vector<std::string> Text::IntervalStringParser::splitStringToArray(const std::string& str, char splitter)
+std::vector<std::string> ImageDbLoader::IntervalStringParser::splitStringToArray(const std::string& str, char splitter)
 {
 	std::vector<std::string> tokens;
 	std::stringstream ss(str);
@@ -40,7 +40,7 @@ std::vector<std::string> Text::IntervalStringParser::splitStringToArray(const st
 /**
 @author Neil Kirk	http://ideone.com/2W99Tt
 */
-std::vector<int> Text::IntervalStringParser::parseIntervalString(const std::string& data)
+std::vector<int> ImageDbLoader::IntervalStringParser::parseIntervalString(const std::string& data)
 {
 	std::vector<std::string> tokens = splitStringToArray(data, ',');
 	std::vector<int> result;

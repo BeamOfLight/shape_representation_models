@@ -1,1 +1,1 @@
-add_subdirectory(text)
+add_subdirectory(image_db_loader)

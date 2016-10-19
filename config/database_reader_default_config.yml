@@ -5,7 +5,7 @@ databases:
       categories:
          -
             category: cats
-            images: all
+            images: "1-5"
          -
             category: dogs
             images: "1-10, 15, 18-21"

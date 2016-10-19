@@ -1,19 +1,17 @@
-# Code from http://stackoverflow.com/a/18764531
-# Neil Kirk http://ideone.com/2W99Tt
+project( image_db_loader_test )
 
-project( interval_string_parser_test )
-
-set(interval_string_parser_test_SOURCES
-  src/interval_string_parser_test.cpp
+set(image_db_loader_test_SOURCES
+  src/image_db_loader_test.cpp
 )
 
-set(interval_string_parser_test_LIBRARIES
-  interval_string_parser
+set(image_db_loader_test_LIBRARIES
+  image_db_loader
+  dpcore
 )
 
-add_executable(interval_string_parser_test
-  ${interval_string_parser_test_SOURCES}
+add_executable(image_db_loader_test
+  ${image_db_loader_test_SOURCES}
 )
 
-target_link_libraries( interval_string_parser_test ${interval_string_parser_test_LIBRARIES})
+target_link_libraries( image_db_loader_test ${image_db_loader_test_LIBRARIES})
 
