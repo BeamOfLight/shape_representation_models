@@ -6,6 +6,8 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <iomanip>
+#include <cmath>
 
 #include <opencv2/core/core.hpp>
 
@@ -15,7 +17,7 @@ namespace ImageDbLoader
 {
   namespace ImagesConfigParser
   {
-		std::vector<std::string> parseConfig(const std::string& filename, bool enableLog = false);
+		std::vector<std::string> parseConfig(const std::string& filename, bool enableLog = false, const std::string &suffix = ".bmp");
 	}
 }
 

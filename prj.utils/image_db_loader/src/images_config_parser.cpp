@@ -1,6 +1,8 @@
 #include <image_db_loader/images_config_parser.h>
 
-std::vector<std::string> ImageDbLoader::ImagesConfigParser::parseConfig(const std::string& filename, bool enableLog)
+const int DIGITS_COUNT_IN_IMG_NUMBER = 4;
+
+std::vector<std::string> ImageDbLoader::ImagesConfigParser::parseConfig(const std::string& filename, bool enableLog, const std::string &suffix)
 {
   std::vector<std::string> result;
 
@@ -36,6 +38,17 @@ std::vector<std::string> ImageDbLoader::ImagesConfigParser::parseConfig(const st
   	  std::string category_images_list = (std::string)(*cat_it)["images"];
   	  if (enableLog) {
   	    std::cout << "category: " << category << " images: " << category_images_list << std::endl;
+  	  }
+  	  std::vector<int> img_ids = ImageDbLoader::IntervalStringParser::parseIntervalString(category_images_list);
+  	  int img_cnt = std::min(static_cast<int>(img_ids.size()), static_cast<int>(pow(10, DIGITS_COUNT_IN_IMG_NUMBER)));
+  	  std::stringstream ss;
+  	  for (int image_id = 0; image_id < img_cnt; image_id++) {
+  	  	ss.str("");
+  	  	ss << "data/images/" << database_name << "/" << category << "/" << category << "_" << std::setw(DIGITS_COUNT_IN_IMG_NUMBER) << std::setfill('0') << image_id << suffix;
+  	  	result.push_back(ss.str());
+  	  	if (enableLog) {
+          std::cout << ss.str() << std::endl;
+        }
   	  }
   	}
 
