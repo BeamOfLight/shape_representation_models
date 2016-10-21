@@ -1,2 +1,3 @@
 %YAML:1.0
 config: "config/shape_representation_models/config_all.srmconf"
+image_db_config: "config/images_config.yml"

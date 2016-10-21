@@ -50,6 +50,7 @@ set(shape_representation_models_HEADERS
 set(shape_representation_models_LIBRARIES
   ${OpenCV_LIBS}
   dpcore
+  image_db_loader
 )
 
 

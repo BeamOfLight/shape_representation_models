@@ -1,0 +1,8 @@
+%YAML:1.0
+databases:
+   -
+      database: silhouettes-database
+      categories:
+         -
+            category: polygonal_shapes
+            images: "1-2"

@@ -17,8 +17,8 @@ namespace ImageDbLoader
 {
   namespace ImagesConfigParser
   {
-		std::vector<std::string> parseConfig(const std::string& filename, bool enableLog = false, const std::string &suffix = ".bmp");
-	}
+    std::vector<std::string> parseConfig(const std::string& filename, bool enableLog = false, const std::string &suffix = ".bmp");
+  }
 }
 
 #endif

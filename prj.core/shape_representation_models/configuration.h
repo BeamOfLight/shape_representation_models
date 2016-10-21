@@ -13,8 +13,8 @@
 namespace ShapeRepresentationModels {
   struct Configuration
   {
-    int firstImageId;
-    int lastImageId;
+    //int firstImageId;
+    //int lastImageId;
     int showImagesFlag;
     int showNotZeroDiffCounter;
     int threadsCount;

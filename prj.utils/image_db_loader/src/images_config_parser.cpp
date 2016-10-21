@@ -44,7 +44,7 @@ std::vector<std::string> ImageDbLoader::ImagesConfigParser::parseConfig(const st
   	  std::stringstream ss;
   	  for (int image_id = 0; image_id < img_cnt; image_id++) {
   	  	ss.str("");
-  	  	ss << "data/images/" << database_name << "/" << category << "/" << category << "_" << std::setw(DIGITS_COUNT_IN_IMG_NUMBER) << std::setfill('0') << image_id << suffix;
+  	  	ss << "data/images/" << database_name << "/" << category << "/" << category << "_" << std::setw(DIGITS_COUNT_IN_IMG_NUMBER) << std::setfill('0') << img_ids[image_id] << suffix;
   	  	result.push_back(ss.str());
   	  	if (enableLog) {
           std::cout << ss.str() << std::endl;

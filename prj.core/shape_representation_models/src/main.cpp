@@ -36,6 +36,8 @@
 #include <shape_representation_models/resampling_chain_code.h>
 #include <shape_representation_models/polygon_model.h>
 #include <shape_representation_models/fourier.h>
+#include <image_db_loader/image_loader.h>
+
 
 #define CONTOURS_COUNT_SIZE 8
 #define POINTS_COUNT_SIZE 16
@@ -224,8 +226,8 @@ ShapeRepresentationModels::Configuration* getConfigurationByFilename(std::string
     );
   }
 
-  configuration->firstImageId = fs["FirstImageId"];
-  configuration->lastImageId = fs["LastImageId"];
+  //configuration->firstImageId = fs["FirstImageId"];
+  //configuration->lastImageId = fs["LastImageId"];
   configuration->showImagesFlag = fs["ShowImagesFlag"];
   configuration->showNotZeroDiffCounter = fs["ShowNotZeroDiffCounter"];
   configuration->showImageIds = fs["ShowImageIds"];
@@ -241,8 +243,8 @@ ShapeRepresentationModels::Configuration* getConfigurationByFilename(std::string
 void showConfiguration(ShapeRepresentationModels::Configuration* configuration)
 {
   std::cout << "Configuration" << std::endl
-    << "FirstImageId:\t\t\t" << configuration->firstImageId << std::endl
-    << "LastImageId:\t\t\t" << configuration->lastImageId << std::endl
+    //<< "FirstImageId:\t\t\t" << configuration->firstImageId << std::endl
+    //<< "LastImageId:\t\t\t" << configuration->lastImageId << std::endl
     << "ShowImagesFlag:\t\t\t" << configuration->showImagesFlag << std::endl
     << "ShowNotZeroDiffCounter:\t\t" << configuration->showNotZeroDiffCounter << std::endl
     << "ShowImageIds:\t\t\t" << configuration->showImageIds << std::endl
@@ -261,10 +263,13 @@ int main(int argc, char** argv)
   // Load configuration
   cv::FileStorage config_fs = DpCore::Common::loadConfig(argc, argv, "config/shape_representation_models.yml");
   std::string filename = DpCore::Filesystem::getCrossPlatformFileName((std::string) config_fs["config"]);
+  std::string image_db_config_filename = DpCore::Filesystem::getCrossPlatformFileName((std::string) config_fs["image_db_config"]);
   config_fs.release();
 
   // Show configuration
-  std::cout << "Configuration" << std::endl << "config: " << filename << std::endl
+  std::cout << "Configuration" << std::endl
+    << "model config: " << filename << std::endl
+    << "image config: " << image_db_config_filename << std::endl
     << "omp_get_max_threads: " << omp_get_max_threads() << std::endl
     << std::endl;
 
@@ -282,12 +287,19 @@ int main(int argc, char** argv)
   showConfiguration(configuration);
 
   // Подгрузка силуэтов
-  std::string prefix = DpCore::Filesystem::getRootProjectDirectory() + "data/images/silhouettes-database/polygonal_shapes/polygonal_shape_";
-  std::string suffix = ".bmp";
-  std::cout << "Image path sample: " << prefix << DpCore::Common::toString(1) << suffix << std::endl;
+  //std::string prefix = DpCore::Filesystem::getRootProjectDirectory() + "data/images/silhouettes-database/polygonal_shapes/polygonal_shape_";
+  //std::string suffix = ".bmp";
+  //std::cout << "Image path sample: " << prefix << DpCore::Common::toString(1) << suffix << std::endl;
 
   std::cout << "Loading objects...\t\t";
-  std::vector < cv::Mat > objects = getAllObjects(prefix, suffix, configuration->firstImageId, configuration->lastImageId);
+  //std::vector < cv::Mat > objects = getAllObjects(prefix, suffix, configuration->firstImageId, configuration->lastImageId);
+  ImageDbLoader::ImageLoader image_loader;
+  image_loader.loadImages(image_db_config_filename);
+  std::vector < cv::Mat > objects;
+  size_t object_count = image_loader.getImagesCount();
+  for (size_t image_id = 0; image_id < object_count; image_id++) {
+    objects.push_back(image_loader.getImageById(image_id));
+  }
   std::cout << objects.size() << std::endl;
 
   if (!objects.size()) {
